@@ -1,0 +1,17 @@
+mat-card {
+  min-width: 50vw;
+  min-height: fit-content;
+  display: inline;
+}
+
+
+
+mat-form-field {
+  font-size: 14px;
+  width: 85%;
+
+}
+/*
+button {
+  width: 10%;
+} */

@@ -1,0 +1,20 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const server_1 = __importDefault(require("./models/server"));
+const dotenv_1 = __importDefault(require("dotenv"));
+// -----
+dotenv_1.default.config();
+// dotenv.config({ path: __dirname + '/dist/'});
+const server = new server_1.default();
+server.listen();
+// -----
+// const nombre: string = 'Ernesto';
+// const apellido: string = 'Ibáñez';
+// // ---
+// // console.log('nombre: ' + nombre);
+// // console.log('apellido: ' + apellido);
+// const nombreCompleto = (nombre: string, apellido: string) => nombre + ' ' + apellido
+// console.log(nombreCompleto(nombre, apellido));

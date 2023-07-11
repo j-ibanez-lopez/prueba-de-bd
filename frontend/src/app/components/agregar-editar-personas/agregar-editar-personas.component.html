@@ -1,0 +1,173 @@
+<h3> Agregar Personaje </h3>
+
+<mat-dialog-content>
+  <!-- <p> -->
+    Esto es una prueba miy relevante para saber si estoy entendiendo.
+  <!-- </p> -->
+</mat-dialog-content>
+
+
+<form [formGroup] = 'formulario' (ngSubmit) = 'agregar()'>
+  <div class = 'fila'>
+    <div class = 'columna'>
+      <mat-form-field>
+        <mat-label>
+          Nombre
+        </mat-label>
+        <mat-hint *ngIf = 'formulario.controls["nombre"].hasError("required") &&
+                          formulario.controls["nombre"].touched'>
+          <mat-icon>warning</mat-icon>
+          <p> El nombre es obligatorio </p>
+        </mat-hint>
+
+        <mat-hint *ngIf = 'formulario.controls["nombre"].hasError("maxlength")'>
+          <mat-icon> warning </mat-icon>
+          <p> Hay un límite de 20 letras. </p>
+        </mat-hint>
+        <input formControlName = 'nombre' matInput type = 'text' />
+      </mat-form-field>
+    </div>
+
+    <div class = 'columna'>
+      <mat-form-field>
+        <mat-label>
+          Apellido
+        </mat-label>
+        <mat-hint
+          *ngIf = 'formulario.controls["apellido"].hasError("required") &&
+                    formulario.controls["apellido"].touched'>
+          <mat-icon> warning </mat-icon>
+          <p>
+            El apellido es obligatorio.
+          </p>
+          </mat-hint>
+
+          <mat-hint *ngIf = 'formulario.controls["apellido"].hasError("maxlength")'>
+            <mat-icon> warning </mat-icon>
+            <p> Hay un límite de 35 letras. </p>
+          </mat-hint>
+
+        <input formControlName = 'apellido' matInput type = 'text' />
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class = 'fila'>
+    <div class = 'columna'>
+      <mat-form-field>
+        <mat-label>
+          Tipo de documento
+        </mat-label>
+        <mat-select formControlName = 'tipoDocumento'>
+          <mat-option *ngFor = 'let tipo of tipo_documento' [value] = 'tipo'> {{ tipo }} </mat-option>
+        </mat-select>
+
+        <mat-hint
+        *ngIf = 'formulario.controls["tipoDocumento"].hasError("required") &&
+                  formulario.controls["tipoDocumento"].touched'>
+          <mat-icon> warning </mat-icon>
+          <p>
+            El tipo de documento es obligatorio.
+          </p>
+          </mat-hint>
+
+      </mat-form-field>
+    </div>
+
+    <div class = 'columna'>
+      <mat-form-field>
+        <mat-label>
+          Documento
+        </mat-label>
+        <input formControlName = 'documento' matInput type = 'number' />
+        <mat-hint
+          *ngIf = 'formulario.controls["documento"].hasError("required") &&
+                    formulario.controls["documento"].touched'>
+          <mat-icon> warning </mat-icon>
+          <p>
+            El documento es obligatorio.
+          </p>
+          </mat-hint>
+<!-- NOT WORKING  -->
+          <mat-hint *ngIf = 'formulario.controls["documento"].hasError("maxlength")'>
+            <mat-icon> warning </mat-icon>
+            <p> Hay un límite de 9 dígitos. </p>
+          </mat-hint>
+          <!-- 'til here -->
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Una forma de organizar justo al medio los elementos. -->
+  <!-- Una forma de ponerlo de a 2, es ubicar a los dos campos
+      dentro del div de class = 'fila' -->
+  <!-- Este método usado corresponde para campos que necesitan
+      un poco más de espacio para ser mostrado.-->
+  <div class = 'fila'>
+    <div class = 'columna'>
+      <mat-form-field class = 'fecha'>
+        <mat-label>
+          Correo
+        </mat-label>
+        <input matInput formControlName = 'correo' type = 'email' />
+        <mat-hint
+          *ngIf = 'formulario.controls["correo"].hasError("required") &&
+                    formulario.controls["correo"].touched'>
+          <mat-icon> warning </mat-icon>
+          <p>
+            El correo es obligatorio.
+          </p>
+          </mat-hint>
+
+          <mat-hint
+          *ngIf = 'formulario.controls["correo"].hasError("email")'>
+          <mat-icon> warning </mat-icon>
+          <p>
+            El formato de un email es: ejemplo@gmail.com
+          </p>
+          </mat-hint>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class = 'fila'>
+    <div class = 'columna'>
+      <mat-form-field class = 'fecha'>
+        <mat-label>
+          Fecha de nacimiento
+        </mat-label>
+        <input matInput [max] = 'hoy' formControlName = 'fechaDeNacimiento' [matDatepicker] = 'picker'>
+        <mat-hint [hidden] = 'formulario.controls["fechaDeNacimiento"].hasError("required") &&
+        formulario.controls["fechaDeNacimiento"].touched'>
+          DD/MM/YYYY
+        </mat-hint>
+
+        <mat-hint *ngIf = 'formulario.controls["fechaDeNacimiento"].hasError("required") &&
+        formulario.controls["fechaDeNacimiento"].touched'>
+          <mat-icon> warning </mat-icon>
+          <p>
+            La fecha de nacimiento es obligatorio.
+          </p>
+          </mat-hint>
+
+        <mat-datepicker-toggle matIconSuffix [for] = 'picker'>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <mat-dialog-actions>
+
+    <button mat-button type = 'submit' [disabled] = "formulario.invalid">
+      Ingresar
+    </button>
+
+    <button mat-button (click)="cerrar()">
+    <!-- <button mat-button> -->
+      Close
+    </button>
+  </mat-dialog-actions>
+
+</form>
