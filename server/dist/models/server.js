@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 // nombre a la constante importada a continuación.
 const persona_routes_1 = __importDefault(require("../routes/persona.routes"));
 // import connection from '../db/conection'
+const cors_1 = __importDefault(require("cors"));
 // También serviría desestructurando el importe
 // llamando sólo a los métodos:
 // import { Application } from 'express';
@@ -27,6 +28,8 @@ class Server {
     middlewares() {
         console.log('Estoy en el middleware');
         this.app.use(express_1.default.json());
+        // Cors
+        this.app.use((0, cors_1.default)());
     }
     router() {
         this.app.use('/api/personas', persona_routes_1.default);

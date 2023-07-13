@@ -50,6 +50,8 @@ exports.getPersona = getPersona;
 // export const postPersona = async (req: Request, res: Response, datos: persona) => 
 const postPersona = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { nombre, apellido, correo, tipoDocumento, documento, fechaNacimiento } = req.body;
+    console.log('Estando en el BACK, la fecha es: ', fechaNacimiento);
+    console.log('Su tipo es: ', typeof (fechaNacimiento));
     try {
         // No se recomienda hacer un split de la query en múltiples líneas. Es muy probable que genere problemas.
         const respuesta = yield keys_1.database.query('INSERT INTO persona(nombre, apellido, correo, "tipoDocumento", documento, "fechaNacimiento") VALUES ($1, $2, $3, $4, $5, $6);', [nombre, apellido, correo, tipoDocumento, documento, fechaNacimiento]);
@@ -68,7 +70,9 @@ const deletePersona = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     const { id } = req.params;
     console.log('Eliminando una persona por el id: ' + id);
     try {
+        console.log('Estoy aquí.');
         const respuesta = yield keys_1.database.query('DELETE FROM persona WHERE id = ' + id);
+        console.log('La respuesta es: ' + respuesta);
         const valor = res.status(200).json(respuesta);
         return valor;
     }

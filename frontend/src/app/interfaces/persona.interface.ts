@@ -5,5 +5,5 @@ export interface Persona {
   correo: string;
   tipoDocumento: string;
   documento: number;
-  fechaDeNacimiento: string;
+  fechaDeNacimiento: Date;
 }

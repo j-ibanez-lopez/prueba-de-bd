@@ -2,9 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 // Angular Material
-
 // b
 import { MatButtonModule } from '@angular/material/button';
 // c
@@ -29,11 +27,16 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+// Fin Angular Material
+
+import { HttpClientModule } from '@angular/common/http'
+
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
+    HttpClientModule,
     // Angular Material
     MatButtonModule,
     MatCardModule,
@@ -51,6 +54,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
 
   exports: [
+    HttpClientModule,
+    // Material
     MatButtonModule,
     MatCardModule,
     MatDialogModule,

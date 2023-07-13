@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Persona } from 'src/app/interfaces/persona.interface';
+import { PersonaService } from 'src/app/services/persona.service';
 
 @Component({
   selector: 'app-agregar-editar-personas',
@@ -18,7 +19,8 @@ export class AgregarEditarPersonasComponent {
   constructor(
     public dialogRef: MatDialogRef<AgregarEditarPersonasComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Persona,
-    private form_builder: FormBuilder
+    private form_builder: FormBuilder,
+    private _servicio: PersonaService
   )
   {
     this.formulario = this.form_builder.group(
@@ -44,6 +46,7 @@ export class AgregarEditarPersonasComponent {
     this.id += 1
 
     console.log(this.formulario.value.fechaDeNacimiento)
+    console.log('Y su tipo es: ', typeof(this.formulario.value.fechaDeNacimiento));
 
     // // --
     // console.log('getUTCDate() -> ' + this.formulario.value.fechaDeNacimiento.getUTCDate())
@@ -54,23 +57,35 @@ export class AgregarEditarPersonasComponent {
     // console.log('toGMTString() -> ' + this.formulario.value.fechaDeNacimiento.toGMTString())
     // console.log('toUTCString() -> ' + this.formulario.value.fechaDeNacimiento.toUTCString())
 
-    const fecha_simplificada = this.concatenar(this.formulario.value.fechaDeNacimiento.getUTCDate(),
-                    this.formulario.value.fechaDeNacimiento.getUTCFullYear(),
-                    this.formulario.value.fechaDeNacimiento.getUTCMonth())
+    const fecha_simplificada = this.concatenar(this.formulario.value.fechaDeNacimiento.getUTCFullYear(),
+                    this.formulario.value.fechaDeNacimiento.getUTCMonth(),
+                    this.formulario.value.fechaDeNacimiento.getUTCDate())
+
+    const fecha_final = new Date(fecha_simplificada);
+    console.log('fecha_final: ' + fecha_final);
 
 
-    const persona: Persona = {
+    const persona: Persona =
+    {
       id:       this.id,
       nombre:   this.formulario.value.nombre,
-      apellido: this.formulario.value.apelliidos,
+      apellido: this.formulario.value.apellido,
       correo:   this.formulario.value.correo,
       tipoDocumento:     this.formulario.value.tipoDocumento,
       documento:         this.formulario.value.documento,
-      fechaDeNacimiento: fecha_simplificada
+      fechaDeNacimiento: new Date (this.formulario.value.fechaDeNacimiento.getUTCFullYear() + '/' + this.formulario.value.fechaDeNacimiento.getUTCMonth() + '/' + this.formulario.value.fechaDeNacimiento.getUTCDate())
     }
 
-    console.log()
-    console.table(persona)
+
+    console.log();
+    console.table(persona);
+    console.log();
+    console.log(persona.fechaDeNacimiento);
+
+    this._servicio.postPersona(persona).subscribe(() => {
+      console.log('Se ha ingresado "Persona"')
+    });
+
     this.cerrar()
   }
 

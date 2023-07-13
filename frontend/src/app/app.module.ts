@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ListPersonasComponent } from './components/list-personas/list-personas.component';
 import { AgregarEditarPersonasComponent } from './components/agregar-editar-personas/agregar-editar-personas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './components/shared/shared/shared.module';
+import { SharedModule } from './components/shared/shared.module';
 
 
 @NgModule({

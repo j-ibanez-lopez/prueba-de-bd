@@ -117,9 +117,9 @@
           <p>
             El correo es obligatorio.
           </p>
-          </mat-hint>
+        </mat-hint>
 
-          <mat-hint
+        <mat-hint
           *ngIf = 'formulario.controls["correo"].hasError("email")'>
           <mat-icon> warning </mat-icon>
           <p>
@@ -137,10 +137,9 @@
           Fecha de nacimiento
         </mat-label>
         <input matInput [max] = 'hoy' formControlName = 'fechaDeNacimiento' [matDatepicker] = 'picker'>
-        <mat-hint [hidden] = 'formulario.controls["fechaDeNacimiento"].hasError("required") &&
-        formulario.controls["fechaDeNacimiento"].touched'>
+        <!-- <mat-hint *ngIf = 'formulario.controls["fechaDeNacimiento"].touched'>
           DD/MM/YYYY
-        </mat-hint>
+        </mat-hint> -->
 
         <mat-hint *ngIf = 'formulario.controls["fechaDeNacimiento"].hasError("required") &&
         formulario.controls["fechaDeNacimiento"].touched'>

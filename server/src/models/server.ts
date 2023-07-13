@@ -1,8 +1,9 @@
 import express from 'express';
 // Cómo la exportación es por defecto, se puede poner cualquier
 // nombre a la constante importada a continuación.
-import routesPersonas from '../routes/persona.routes'
+import routesPersonas from '../routes/persona.routes';
 // import connection from '../db/conection'
+import cors from 'cors';
 
 
 // También serviría desestructurando el importe
@@ -34,6 +35,9 @@ class Server
     middlewares() {
         console.log('Estoy en el middleware')
         this.app.use(express.json());
+
+        // Cors
+        this.app.use(cors())
     }
 
     router() {

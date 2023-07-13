@@ -60,6 +60,10 @@ export const postPersona = async (req: Request, res: Response) =>
 {
 
     const { nombre, apellido, correo, tipoDocumento, documento, fechaNacimiento } = req.body
+
+    console.log('Estando en el BACK, la fecha es: ', fechaNacimiento);
+    console.log('Su tipo es: ', typeof(fechaNacimiento));
+
     try 
     {
         // No se recomienda hacer un split de la query en múltiples líneas. Es muy probable que genere problemas.
@@ -90,8 +94,9 @@ export const deletePersona = async (req: Request, res: Response) =>
 
     try 
     {
+        console.log('Estoy aquí.');
         const respuesta: QueryResult = await database.query('DELETE FROM persona WHERE id = ' + id);
-        
+        console.log('La respuesta es: ' + respuesta);
         const valor = res.status(200).json(respuesta);
 
         return valor;
