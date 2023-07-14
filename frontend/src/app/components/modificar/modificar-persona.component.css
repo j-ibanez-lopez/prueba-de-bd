@@ -1,0 +1,11 @@
+
+.fila {
+  display: flex;
+}
+
+.columna {
+  flex: 50%;
+  margin: 0 5vw;
+  width: 100%;
+
+}

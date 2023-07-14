@@ -59,16 +59,16 @@ export const getPersona = async (req: Request, res: Response): Promise<Response>
 export const postPersona = async (req: Request, res: Response) => 
 {
 
-    const { nombre, apellido, correo, tipoDocumento, documento, fechaNacimiento } = req.body
+    const { nombre, apellido, correo, tipoDocumento, documento, fechaDeNacimiento } = req.body
 
-    console.log('Estando en el BACK, la fecha es: ', fechaNacimiento);
-    console.log('Su tipo es: ', typeof(fechaNacimiento));
+    console.log('Estando en el BACK, la fecha es: ', fechaDeNacimiento);
+    console.log('Su tipo es: ', typeof(fechaDeNacimiento));
 
     try 
     {
         // No se recomienda hacer un split de la query en múltiples líneas. Es muy probable que genere problemas.
         const respuesta: QueryResult = await database.query('INSERT INTO persona(nombre, apellido, correo, "tipoDocumento", documento, "fechaNacimiento") VALUES ($1, $2, $3, $4, $5, $6);',
-            [nombre, apellido, correo, tipoDocumento, documento, fechaNacimiento])
+            [nombre, apellido, correo, tipoDocumento, documento, fechaDeNacimiento])
 
         // Esto NO funciona.
         // const respuesta: QueryResult = await database.query('INSERT INTO persona VALUES ($1);',

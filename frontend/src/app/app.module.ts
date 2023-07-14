@@ -7,13 +7,15 @@ import { ListPersonasComponent } from './components/list-personas/list-personas.
 import { AgregarEditarPersonasComponent } from './components/agregar-editar-personas/agregar-editar-personas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
+import { ModificarPersonaComponent } from './components/modificar/modificar-persona.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ListPersonasComponent,
-    AgregarEditarPersonasComponent
+    AgregarEditarPersonasComponent,
+    ModificarPersonaComponent
   ],
 
   imports: [

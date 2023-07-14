@@ -73,7 +73,7 @@ export class AgregarEditarPersonasComponent {
       correo:   this.formulario.value.correo,
       tipoDocumento:     this.formulario.value.tipoDocumento,
       documento:         this.formulario.value.documento,
-      fechaDeNacimiento: new Date (this.formulario.value.fechaDeNacimiento.getUTCFullYear() + '/' + this.formulario.value.fechaDeNacimiento.getUTCMonth() + '/' + this.formulario.value.fechaDeNacimiento.getUTCDate())
+      fechaDeNacimiento: new Date (this.formulario.value.fechaDeNacimiento.getUTCFullYear() + '-' + (this.formulario.value.fechaDeNacimiento.getUTCMonth()+1) + '-' + this.formulario.value.fechaDeNacimiento.getUTCDate())
     }
 
 

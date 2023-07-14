@@ -8,6 +8,7 @@ import { Persona } from 'src/app/interfaces/persona.interface';
 import { AgregarEditarPersonasComponent } from '../agregar-editar-personas/agregar-editar-personas.component';
 import { PersonaService } from 'src/app/services/persona.service';
 import { Observable } from 'rxjs';
+import { ModificarPersonaComponent } from '../modificar/modificar-persona.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ export class ListPersonasComponent implements AfterViewInit
 {
 
   fecha: Date = new Date()
+  nombre_columnas = ['id', 'nombre', 'apellido', 'correo', 'tipoDocumento', 'documento', 'FechaDeNacimiento', 'editar', 'eliminar'];
 
   @ViewChild(MatPaginator)
   paginador!: MatPaginator;
@@ -108,10 +110,6 @@ export class ListPersonasComponent implements AfterViewInit
     this.mensaje = 'Hola Mundo';
   }
 
-
-
-  nombre_columnas = ['id', 'nombre', 'apellido', 'correo', 'tipoDocumento', 'documento', 'FechaDeNacimiento', 'editar', 'eliminar'];
-
   calcularEdad(fecha_nacimiento: Date): number
   {
     return new Date().getFullYear() - fecha_nacimiento.getFullYear();
@@ -138,7 +136,15 @@ export class ListPersonasComponent implements AfterViewInit
 
   editar()
   {
-    // Se hará?
+    const interaccion = this.dialog.open(ModificarPersonaComponent,
+      {
+        width: '200vw'
+      }
+    )
+
+    interaccion.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 
   eliminar(event: Persona)
